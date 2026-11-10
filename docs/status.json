@@ -1,0 +1,2841 @@
+{
+  "updated_at_unix": 1794289112.0722737,
+  "updated_at_chicago": "Nov 9, 2026, 11:38:32 PM CST",
+  "timezone": "America/Chicago",
+  "totals": {
+    "hardened_caught": 16,
+    "hardened_total": 16,
+    "vuln_caught": 5,
+    "vuln_total": 16,
+    "ok": true
+  },
+  "cases": [
+    {
+      "id": "C0_honest_roundtrip",
+      "title": "Honest Alice<->Bob chat works (control)",
+      "control": true,
+      "new": false,
+      "hardened": {
+        "caught": true,
+        "detail": "round trip ok",
+        "alerts": []
+      },
+      "vuln": {
+        "caught": true,
+        "detail": "round trip ok",
+        "expected": "caught"
+      }
+    },
+    {
+      "id": "C1_bb84_no_eve",
+      "title": "BB84 with no eavesdropper yields a key, no alert (control)",
+      "control": true,
+      "new": false,
+      "hardened": {
+        "caught": true,
+        "detail": "QBER=0.00% key_bits=1160 alerts=[]",
+        "alerts": []
+      },
+      "vuln": {
+        "caught": true,
+        "detail": "QBER=0.00% key_bits=256 alerts=[]",
+        "expected": "caught"
+      }
+    },
+    {
+      "id": "N1_sas_mismatch_mitm",
+      "title": "MITM: codes differ -> confirm() refuses AND nothing can be sealed",
+      "control": false,
+      "new": false,
+      "hardened": {
+        "caught": true,
+        "detail": "confirm_refused=True seal_after_mismatch=refused",
+        "alerts": [
+          "SAS_MISMATCH",
+          "SESSION_KILLED"
+        ]
+      },
+      "vuln": {
+        "caught": false,
+        "detail": "confirm_refused=True seal_after_mismatch=ALLOWED",
+        "expected": "falls"
+      }
+    },
+    {
+      "id": "N2_sas_grinding",
+      "title": "MITM grinds keys (2,000 tries) to make both codes match",
+      "control": false,
+      "new": false,
+      "hardened": {
+        "caught": true,
+        "detail": "codes never matched in 2000 (10-digit SAS)",
+        "alerts": [
+          "SAS_MISMATCH"
+        ]
+      },
+      "vuln": {
+        "caught": false,
+        "detail": "codes MATCHED after 31 tries (2-digit SAS)",
+        "expected": "falls"
+      }
+    },
+    {
+      "id": "N3_commit_swap",
+      "title": "Handshake: key swapped after commitment is refused",
+      "control": false,
+      "new": false,
+      "hardened": {
+        "caught": true,
+        "detail": "commitment mismatch refused",
+        "alerts": [
+          "COMMIT_MISMATCH"
+        ]
+      },
+      "vuln": {
+        "caught": false,
+        "detail": "no commitment exists in this build",
+        "expected": "falls"
+      }
+    },
+    {
+      "id": "N4_fingerprint_mitm",
+      "title": "MITM after grinding: sphere fingerprint pictures still differ",
+      "control": false,
+      "new": false,
+      "hardened": {
+        "caught": true,
+        "detail": "pictures differ",
+        "alerts": []
+      },
+      "vuln": {
+        "caught": false,
+        "detail": "pictures IDENTICAL (picture drawn from short code)",
+        "expected": "falls"
+      }
+    },
+    {
+      "id": "N5_seal_before_confirm",
+      "title": "seal() before confirm() is refused",
+      "control": false,
+      "new": false,
+      "hardened": {
+        "caught": true,
+        "detail": "PermissionError",
+        "alerts": [
+          "UNCONFIRMED_SEND"
+        ]
+      },
+      "vuln": {
+        "caught": false,
+        "detail": "seal ALLOWED before confirm",
+        "expected": "falls"
+      }
+    },
+    {
+      "id": "N6_open_before_confirm",
+      "title": "open() before confirm() is refused",
+      "control": false,
+      "new": false,
+      "hardened": {
+        "caught": true,
+        "detail": "PermissionError",
+        "alerts": [
+          "UNCONFIRMED_SEND"
+        ]
+      },
+      "vuln": {
+        "caught": false,
+        "detail": "open ALLOWED before confirm",
+        "expected": "falls"
+      }
+    },
+    {
+      "id": "N7_replay",
+      "title": "Replayed ciphertext is refused",
+      "control": false,
+      "new": false,
+      "hardened": {
+        "caught": true,
+        "detail": "replay or reorder: got seq 0, want 1",
+        "alerts": [
+          "REPLAY"
+        ]
+      },
+      "vuln": {
+        "caught": false,
+        "detail": "replay ACCEPTED (message delivered twice)",
+        "expected": "falls"
+      }
+    },
+    {
+      "id": "N8_reorder",
+      "title": "Reordered ciphertexts (2nd before 1st) are refused",
+      "control": false,
+      "new": false,
+      "hardened": {
+        "caught": true,
+        "detail": "replay or reorder: got seq 1, want 0",
+        "alerts": [
+          "REORDER"
+        ]
+      },
+      "vuln": {
+        "caught": false,
+        "detail": "out-of-order message ACCEPTED",
+        "expected": "falls"
+      }
+    },
+    {
+      "id": "N9_bitflip_body",
+      "title": "Flipped ciphertext byte fails the Poly1305 tag",
+      "control": false,
+      "new": false,
+      "hardened": {
+        "caught": true,
+        "detail": "InvalidTag",
+        "alerts": [
+          "TAG_FAIL"
+        ]
+      },
+      "vuln": {
+        "caught": true,
+        "detail": "InvalidTag",
+        "expected": "caught"
+      }
+    },
+    {
+      "id": "N10_bitflip_tag",
+      "title": "Flipped tag byte fails the Poly1305 tag",
+      "control": false,
+      "new": false,
+      "hardened": {
+        "caught": true,
+        "detail": "InvalidTag",
+        "alerts": [
+          "TAG_FAIL"
+        ]
+      },
+      "vuln": {
+        "caught": true,
+        "detail": "InvalidTag",
+        "expected": "caught"
+      }
+    },
+    {
+      "id": "N11_header_tamper",
+      "title": "Edited header (version) is refused",
+      "control": false,
+      "new": false,
+      "hardened": {
+        "caught": true,
+        "detail": "ValueError: bad version",
+        "alerts": [
+          "BAD_HEADER"
+        ]
+      },
+      "vuln": {
+        "caught": true,
+        "detail": "ValueError: bad version",
+        "expected": "caught"
+      }
+    },
+    {
+      "id": "N12_bb84_eve_25",
+      "title": "BB84, Eve intercepts 25%: flagged (QBER ~6%, under the 11% abort cutoff)",
+      "control": false,
+      "new": false,
+      "hardened": {
+        "caught": true,
+        "detail": "mean QBER=6.1%  aborted 3/10  alerted 10/10  silent keys 0/10",
+        "alerts": [
+          "BB84_ABORT",
+          "QBER_WARN"
+        ]
+      },
+      "vuln": {
+        "caught": false,
+        "detail": "mean QBER=6.1%  aborted 1/10  alerted 0/10  silent keys 9/10",
+        "expected": "falls"
+      }
+    },
+    {
+      "id": "N13_bb84_eve_50",
+      "title": "BB84, Eve intercepts 50%: aborted (QBER ~12.5%)",
+      "control": false,
+      "new": false,
+      "hardened": {
+        "caught": true,
+        "detail": "mean QBER=12.3%  aborted 10/10  alerted 10/10  silent keys 0/10",
+        "alerts": [
+          "BB84_ABORT",
+          "QBER_ABORT",
+          "QBER_WARN"
+        ]
+      },
+      "vuln": {
+        "caught": true,
+        "detail": "mean QBER=12.3%  aborted 10/10  alerted 0/10  silent keys 0/10",
+        "expected": "caught"
+      }
+    },
+    {
+      "id": "N14_bb84_eve_100",
+      "title": "BB84, Eve intercepts 100%: aborted (QBER ~25%)",
+      "control": false,
+      "new": false,
+      "hardened": {
+        "caught": true,
+        "detail": "mean QBER=24.5%  aborted 10/10  alerted 10/10  silent keys 0/10",
+        "alerts": [
+          "QBER_ABORT"
+        ]
+      },
+      "vuln": {
+        "caught": true,
+        "detail": "mean QBER=24.5%  aborted 10/10  alerted 0/10  silent keys 0/10",
+        "expected": "caught"
+      }
+    },
+    {
+      "id": "N15_bb84_breidbart_40",
+      "title": "BB84, Eve uses the Breidbart basis on 40% (QBER ~10%, under the abort cutoff)",
+      "control": false,
+      "new": true,
+      "hardened": {
+        "caught": true,
+        "detail": "announced QBER=9.8%  aborted 10/10  alerted 10/10  silent keys 0/10",
+        "alerts": [
+          "BB84_ABORT",
+          "QBER_ABORT",
+          "QBER_WARN"
+        ]
+      },
+      "vuln": {
+        "caught": false,
+        "detail": "announced QBER=9.8%  aborted 7/10  alerted 0/10  silent keys 3/10",
+        "expected": "falls"
+      }
+    },
+    {
+      "id": "N16_bb84_forged_error_report",
+      "title": "BB84, Eve on 20% and Mallory forges the error sample to read 0 errors",
+      "control": false,
+      "new": true,
+      "hardened": {
+        "caught": true,
+        "detail": "announced QBER=0.0%  aborted 0/10  alerted 10/10  silent keys 0/10",
+        "alerts": [
+          "QBER_REPORT_MISMATCH"
+        ]
+      },
+      "vuln": {
+        "caught": false,
+        "detail": "announced QBER=0.0%  aborted 0/10  alerted 0/10  silent keys 10/10",
+        "expected": "falls"
+      }
+    }
+  ],
+  "open_issues": [
+    {
+      "id": "r4_retry_after_mismatch",
+      "title": "A failed SAS didn't kill the session",
+      "status": "FIXED",
+      "side": "lock",
+      "hardened": "CAUGHT",
+      "detail": "ValueError: session closed after a code mismatch: start a new handshake"
+    },
+    {
+      "id": "r5_truncated",
+      "title": "A truncated ciphertext crashed with no alert",
+      "status": "FIXED",
+      "side": "lock",
+      "hardened": "CAUGHT",
+      "detail": "ValueError: malformed: message too short"
+    },
+    {
+      "id": "r8_small_bb84",
+      "title": "A tiny BB84 run now aborts cleanly instead of raising",
+      "status": "FIXED",
+      "side": "quantum",
+      "hardened": "CAUGHT",
+      "detail": "silent keys 0/10 at n=512"
+    },
+    {
+      "id": "r9_low_eve_under_warn",
+      "title": "An 8% Eve sometimes stays under the 2.5% warning",
+      "status": "OPEN",
+      "side": "quantum",
+      "hardened": "MISSED",
+      "detail": "silent keys 6/10 (Eve 8%)"
+    }
+  ],
+  "round1": [
+    {
+      "id": "r1_reflection",
+      "doc": "",
+      "hardened": "CAUGHT",
+      "vuln": "CAUGHT",
+      "detail": "InvalidTag: "
+    },
+    {
+      "id": "r2_cross_session_replay",
+      "doc": "",
+      "hardened": "CAUGHT",
+      "vuln": "CAUGHT",
+      "detail": "InvalidTag: "
+    },
+    {
+      "id": "r3_near_miss_code",
+      "doc": "",
+      "hardened": "CAUGHT",
+      "vuln": "CAUGHT",
+      "detail": "ValueError: fingerprint code mismatch: possible man-in-the-middle, hang up"
+    },
+    {
+      "id": "r4_retry_after_mismatch",
+      "doc": "MITM: Alice's confirm fails once. Can the SAME session be confirmed later",
+      "hardened": "CAUGHT",
+      "vuln": "MISSED",
+      "detail": "ValueError: session closed after a code mismatch: start a new handshake"
+    },
+    {
+      "id": "r5_truncated",
+      "doc": "",
+      "hardened": "CAUGHT",
+      "vuln": "CAUGHT",
+      "detail": "ValueError: malformed: message too short"
+    },
+    {
+      "id": "r6_forged_future_seq",
+      "doc": "",
+      "hardened": "CAUGHT",
+      "vuln": "CAUGHT",
+      "detail": "ValueError: replay or reorder: got seq 5, want 0"
+    },
+    {
+      "id": "r7_dos_then_real",
+      "doc": "A forged message must not knock the session out of sync.",
+      "hardened": "CAUGHT",
+      "vuln": "CAUGHT",
+      "detail": "real msg still opens after forgery"
+    },
+    {
+      "id": "r8_small_bb84",
+      "doc": "Finite-size: only 512 qubits, Eve on 25%. Does a key come out with no alert?",
+      "hardened": "CAUGHT",
+      "vuln": "MISSED",
+      "detail": "silent keys 0/10 at n=512"
+    },
+    {
+      "id": "r9_low_eve_under_warn",
+      "doc": "Eve on 8% of qubits: QBER ~2%, under the 2.5% warning line.",
+      "hardened": "MISSED",
+      "vuln": "MISSED",
+      "detail": "silent keys 6/10 (Eve 8%)"
+    }
+  ],
+  "events": [
+    {
+      "ts": 1794289066,
+      "ts_chicago": "Nov 9, 2026, 11:37:46 PM CST",
+      "type": "commit",
+      "team": "blue",
+      "actor": "Spherical Phase Lab",
+      "kind": "COMMIT",
+      "case": "",
+      "detail": "Codespaces dev container: one-click private copy of the range, dashboard on port 8360",
+      "severity": "INFO",
+      "sha": "1aed7570"
+    },
+    {
+      "ts": 1794289015,
+      "ts_chicago": "Nov 9, 2026, 11:36:55 PM CST",
+      "type": "commit",
+      "team": "red",
+      "actor": "New Bot 1",
+      "kind": "COMMIT",
+      "case": "",
+      "detail": "Locked-down visitor image + SSH server setup (separate server only)",
+      "severity": "INFO",
+      "sha": "fa48debc"
+    },
+    {
+      "ts": 1794288983.0583348,
+      "ts_chicago": "Nov 9, 2026, 11:36:23 PM CST",
+      "type": "run_end",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RUN_END",
+      "case": "",
+      "detail": "hardened 16/16 caught, vuln 5/16",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288983.0575142,
+      "ts_chicago": "Nov 9, 2026, 11:36:23 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "hardened caught | vuln fell",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.950035,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "bob: announced QBER=0.00% but error correction fixed 5.28%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.9500337,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "announced QBER=0.00% but error correction fixed 5.28%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.9391882,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "bob: announced QBER=0.00% but error correction fixed 4.79%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.9391863,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "announced QBER=0.00% but error correction fixed 4.79%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.9285645,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "bob: announced QBER=0.00% but error correction fixed 4.20%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.9285626,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "announced QBER=0.00% but error correction fixed 4.20%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.9177525,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "bob: announced QBER=0.00% but error correction fixed 5.10%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.917751,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "announced QBER=0.00% but error correction fixed 5.10%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.906775,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "bob: announced QBER=0.00% but error correction fixed 5.10%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.9067736,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "announced QBER=0.00% but error correction fixed 5.10%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.8956785,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "bob: announced QBER=0.00% but error correction fixed 5.88%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.8956769,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "announced QBER=0.00% but error correction fixed 5.88%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.884531,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "bob: announced QBER=0.00% but error correction fixed 4.42%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.8845294,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "announced QBER=0.00% but error correction fixed 4.42%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.8735003,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "bob: announced QBER=0.00% but error correction fixed 6.30%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.8734987,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "announced QBER=0.00% but error correction fixed 6.30%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.862527,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "bob: announced QBER=0.00% but error correction fixed 5.45%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.862525,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "announced QBER=0.00% but error correction fixed 5.45%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.8512464,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "bob: announced QBER=0.00% but error correction fixed 4.57%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.8512423,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_REPORT_MISMATCH",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "announced QBER=0.00% but error correction fixed 4.57%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.8403103,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "N16_bb84_forged_error_report",
+      "detail": "BB84, Eve on 20% and Mallory forges the error sample to read 0 errors",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.8402364,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "hardened caught | vuln fell",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.7225518,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.7225509,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.7200718,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: QBER=9.459% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.7200706,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "QBER=9.459% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.7106805,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.7106795,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.7084277,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: QBER=9.055% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.7084265,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "QBER=9.055% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.699008,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.699007,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6965559,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: QBER=9.400% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6965544,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "QBER=9.400% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6869094,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6869085,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.684793,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: QBER=10.516% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6847918,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "QBER=10.516% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6754963,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6754954,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6731653,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: QBER=8.431% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6731641,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "QBER=8.431% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6637187,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: QBER=12.403% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6637177,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "QBER=12.403% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6541824,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: QBER=11.696% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.654181,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "QBER=11.696% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.644644,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6446428,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6422489,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: QBER=8.350% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6422474,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "QBER=8.350% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6328816,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6328804,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6304398,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: QBER=9.038% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.630438,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "QBER=9.038% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.621193,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6211913,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6187055,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "bob: QBER=10.150% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.6187027,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "QBER=10.150% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.609237,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "N15_bb84_breidbart_40",
+      "detail": "BB84, Eve uses the Breidbart basis on 40% (QBER ~10%, under the abort cutoff)",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.60914,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "N14_bb84_eve_100",
+      "detail": "hardened caught | vuln caught",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.4103022,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "bob: QBER=22.394% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.410301,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "QBER=22.394% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.3930566,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "bob: QBER=23.031% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.3930547,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "QBER=23.031% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.375732,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "bob: QBER=23.200% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.375731,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "QBER=23.200% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.3583522,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "bob: QBER=26.577% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.358351,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "QBER=26.577% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.3410962,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "bob: QBER=23.137% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.341095,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "QBER=23.137% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.3240428,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "bob: QBER=26.550% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.3240402,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "QBER=26.550% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.306984,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "bob: QBER=25.341% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.306982,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "QBER=25.341% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.2899475,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "bob: QBER=27.038% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.289946,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "QBER=27.038% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.2727473,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "bob: QBER=23.654% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.2727456,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "QBER=23.654% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.2555153,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "bob: QBER=24.060% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.2555127,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N14_bb84_eve_100",
+      "detail": "QBER=24.060% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.2379346,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "N14_bb84_eve_100",
+      "detail": "BB84, Eve intercepts 100%: aborted (QBER ~25%)",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.2378232,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "N13_bb84_eve_50",
+      "detail": "hardened caught | vuln caught",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.090442,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "bob: QBER=12.548% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.090441,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "QBER=12.548% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.07796,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "bob: pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.0779586,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.0754507,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N13_bb84_eve_50",
+      "detail": "bob: QBER=10.827% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.0754492,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N13_bb84_eve_50",
+      "detail": "QBER=10.827% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.0634599,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "bob: QBER=13.400% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.063457,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "QBER=13.400% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.050848,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "bob: QBER=12.237% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.0508468,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "QBER=12.237% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.0386634,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "bob: QBER=14.118% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.0386624,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "QBER=14.118% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.0264895,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "bob: QBER=12.791% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.0264885,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "QBER=12.791% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.0143585,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "bob: QBER=12.865% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.014357,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "QBER=12.865% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.00221,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "bob: QBER=11.332% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288982.002208,
+      "ts_chicago": "Nov 9, 2026, 11:36:22 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "QBER=11.332% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.989979,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "bob: QBER=12.115% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.9899776,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "QBER=12.115% > 11%",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.9778547,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "bob: pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.9778535,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N13_bb84_eve_50",
+      "detail": "pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.9752386,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N13_bb84_eve_50",
+      "detail": "bob: QBER=10.714% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.9752362,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N13_bb84_eve_50",
+      "detail": "QBER=10.714% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.9629865,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "N13_bb84_eve_50",
+      "detail": "BB84, Eve intercepts 50%: aborted (QBER ~12.5%)",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.9628432,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "N12_bb84_eve_25",
+      "detail": "hardened caught | vuln fell",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.8457496,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N12_bb84_eve_25",
+      "detail": "bob: pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.8457484,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N12_bb84_eve_25",
+      "detail": "pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.843846,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "bob: QBER=8.880% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.8438447,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "QBER=8.880% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.8321874,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "bob: QBER=5.512% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.8321857,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "QBER=5.512% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.820895,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "bob: QBER=6.000% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.8208935,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "QBER=6.000% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.81127,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N12_bb84_eve_25",
+      "detail": "bob: key_confirm_mismatch",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.8112686,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N12_bb84_eve_25",
+      "detail": "key_confirm_mismatch",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.8091545,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "bob: QBER=5.545% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.809153,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "QBER=5.545% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7977395,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "bob: QBER=6.667% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7977383,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "QBER=6.667% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7879155,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N12_bb84_eve_25",
+      "detail": "bob: pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7879143,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BB84_ABORT",
+      "case": "N12_bb84_eve_25",
+      "detail": "pa_key_too_short",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.785952,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "bob: QBER=7.752% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7859504,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "QBER=7.752% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7742188,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "bob: QBER=6.823% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.774217,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "QBER=6.823% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.762281,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "bob: QBER=4.970% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7622793,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "QBER=4.970% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.750282,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "bob: QBER=4.808% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.75028,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "QBER=4.808% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.738699,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "bob: QBER=4.511% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7386963,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "N12_bb84_eve_25",
+      "detail": "QBER=4.511% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7286804,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "N12_bb84_eve_25",
+      "detail": "BB84, Eve intercepts 25%: flagged (QBER ~6%, under the 11% abort cutoff)",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7286632,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "N11_header_tamper",
+      "detail": "hardened caught | vuln caught",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7285066,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BAD_HEADER",
+      "case": "N11_header_tamper",
+      "detail": "bob: bad version",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7285056,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "BAD_HEADER",
+      "case": "N11_header_tamper",
+      "detail": "bad version",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7283497,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "N11_header_tamper",
+      "detail": "Edited header (version) is refused",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7283325,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "N10_bitflip_tag",
+      "detail": "hardened caught | vuln caught",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7281752,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "TAG_FAIL",
+      "case": "N10_bitflip_tag",
+      "detail": "bob: Poly1305 tag check failed (tampered or wrong key): refused",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.728174,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "TAG_FAIL",
+      "case": "N10_bitflip_tag",
+      "detail": "Poly1305 tag check failed (tampered or wrong key): refused",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7280126,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "N10_bitflip_tag",
+      "detail": "Flipped tag byte fails the Poly1305 tag",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.72799,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "N9_bitflip_body",
+      "detail": "hardened caught | vuln caught",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7278123,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "TAG_FAIL",
+      "case": "N9_bitflip_body",
+      "detail": "bob: Poly1305 tag check failed (tampered or wrong key): refused",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.727811,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "TAG_FAIL",
+      "case": "N9_bitflip_body",
+      "detail": "Poly1305 tag check failed (tampered or wrong key): refused",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7276416,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "N9_bitflip_body",
+      "detail": "Flipped ciphertext byte fails the Poly1305 tag",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7276244,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "N8_reorder",
+      "detail": "hardened caught | vuln fell",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7274652,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "REORDER",
+      "case": "N8_reorder",
+      "detail": "bob: replay or reorder: got seq 1, want 0",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7274644,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "REORDER",
+      "case": "N8_reorder",
+      "detail": "replay or reorder: got seq 1, want 0",
+      "severity": "MEDIUM",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.727302,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "N8_reorder",
+      "detail": "Reordered ciphertexts (2nd before 1st) are refused",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.727283,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "N7_replay",
+      "detail": "hardened caught | vuln fell",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7271209,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "REPLAY",
+      "case": "N7_replay",
+      "detail": "bob: replay or reorder: got seq 0, want 1",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.72712,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "REPLAY",
+      "case": "N7_replay",
+      "detail": "replay or reorder: got seq 0, want 1",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7269511,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "N7_replay",
+      "detail": "Replayed ciphertext is refused",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.726931,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "N6_open_before_confirm",
+      "detail": "hardened caught | vuln fell",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7267501,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "UNCONFIRMED_SEND",
+      "case": "N6_open_before_confirm",
+      "detail": "bob: read the 10-digit code aloud and call confirm() first",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.726749,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "UNCONFIRMED_SEND",
+      "case": "N6_open_before_confirm",
+      "detail": "read the 10-digit code aloud and call confirm() first",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7265832,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "N6_open_before_confirm",
+      "detail": "open() before confirm() is refused",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7265594,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "N5_seal_before_confirm",
+      "detail": "hardened caught | vuln fell",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7263525,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "UNCONFIRMED_SEND",
+      "case": "N5_seal_before_confirm",
+      "detail": "alice: read the 10-digit code aloud and call confirm() first",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7263489,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "UNCONFIRMED_SEND",
+      "case": "N5_seal_before_confirm",
+      "detail": "read the 10-digit code aloud and call confirm() first",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7261233,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "N5_seal_before_confirm",
+      "detail": "seal() before confirm() is refused",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.7260263,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "N4_fingerprint_mitm",
+      "detail": "hardened caught | vuln fell",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.490603,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "N4_fingerprint_mitm",
+      "detail": "MITM after grinding: sphere fingerprint pictures still differ",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.4905853,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "N3_commit_swap",
+      "detail": "hardened caught | vuln fell",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.4905632,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "COMMIT_MISMATCH",
+      "case": "N3_commit_swap",
+      "detail": "bob: commitment mismatch",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.4905617,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "COMMIT_MISMATCH",
+      "case": "N3_commit_swap",
+      "detail": "commitment mismatch",
+      "severity": "HIGH",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.4904363,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "N3_commit_swap",
+      "detail": "Handshake: key swapped after commitment is refused",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.4904017,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "N2_sas_grinding",
+      "detail": "hardened caught | vuln fell",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.488137,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "SAS_MISMATCH",
+      "case": "N2_sas_grinding",
+      "detail": "alice: 2000 MITM calls: codes never matched, every call refused at confirm()",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288981.488132,
+      "ts_chicago": "Nov 9, 2026, 11:36:21 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "SAS_MISMATCH",
+      "case": "N2_sas_grinding",
+      "detail": "2000 MITM calls: codes never matched, every call refused at confirm()",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288980.972442,
+      "ts_chicago": "Nov 9, 2026, 11:36:20 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "N2_sas_grinding",
+      "detail": "MITM grinds keys (2,000 tries) to make both codes match",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288980.9724162,
+      "ts_chicago": "Nov 9, 2026, 11:36:20 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "N1_sas_mismatch_mitm",
+      "detail": "hardened caught | vuln fell",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288980.9720967,
+      "ts_chicago": "Nov 9, 2026, 11:36:20 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "SESSION_KILLED",
+      "case": "N1_sas_mismatch_mitm",
+      "detail": "alice: session closed after a code mismatch",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288980.9720953,
+      "ts_chicago": "Nov 9, 2026, 11:36:20 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "SESSION_KILLED",
+      "case": "N1_sas_mismatch_mitm",
+      "detail": "session closed after a code mismatch",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288980.972054,
+      "ts_chicago": "Nov 9, 2026, 11:36:20 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "SAS_MISMATCH",
+      "case": "N1_sas_mismatch_mitm",
+      "detail": "alice: fingerprint code mismatch: possible man-in-the-middle, hang up",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288980.9720511,
+      "ts_chicago": "Nov 9, 2026, 11:36:20 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "SAS_MISMATCH",
+      "case": "N1_sas_mismatch_mitm",
+      "detail": "fingerprint code mismatch: possible man-in-the-middle, hang up",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288980.9716375,
+      "ts_chicago": "Nov 9, 2026, 11:36:20 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "N1_sas_mismatch_mitm",
+      "detail": "MITM: codes differ -> confirm() refuses AND nothing can be sealed",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288980.971567,
+      "ts_chicago": "Nov 9, 2026, 11:36:20 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "C1_bb84_no_eve",
+      "detail": "hardened caught | vuln caught",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288980.949711,
+      "ts_chicago": "Nov 9, 2026, 11:36:20 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "C1_bb84_no_eve",
+      "detail": "BB84 with no eavesdropper yields a key, no alert (control)",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288980.949636,
+      "ts_chicago": "Nov 9, 2026, 11:36:20 PM CST",
+      "type": "result",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RESULT",
+      "case": "C0_honest_roundtrip",
+      "detail": "hardened caught | vuln caught",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288980.9460123,
+      "ts_chicago": "Nov 9, 2026, 11:36:20 PM CST",
+      "type": "attack",
+      "team": "red",
+      "actor": "cases",
+      "kind": "ATTACK",
+      "case": "C0_honest_roundtrip",
+      "detail": "Honest Alice<->Bob chat works (control)",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288980.9459271,
+      "ts_chicago": "Nov 9, 2026, 11:36:20 PM CST",
+      "type": "run_start",
+      "team": "range",
+      "actor": "scoreboard",
+      "kind": "RUN_START",
+      "case": "",
+      "detail": "18 cases on hardened + vuln",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288914,
+      "ts_chicago": "Nov 9, 2026, 11:35:14 PM CST",
+      "type": "commit",
+      "team": "blue",
+      "actor": "Spherical Phase Lab",
+      "kind": "COMMIT",
+      "case": "",
+      "detail": "R10 fix: privacy amplification keeps n(1-h(Q)) - actual Cascade parity leak - 16; clean pa_key_too_short abort instead of a raise (Bloch Alignment Tester)",
+      "severity": "INFO",
+      "sha": "f52ac2f6"
+    },
+    {
+      "ts": 1794288905.9475455,
+      "ts_chicago": "Nov 9, 2026, 11:35:05 PM CST",
+      "type": "finding",
+      "team": "red",
+      "actor": "New Bot 1",
+      "kind": "R1_CAUGHT",
+      "case": "r1_reflection",
+      "detail": "InvalidTag: ",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288905.9475455,
+      "ts_chicago": "Nov 9, 2026, 11:35:05 PM CST",
+      "type": "finding",
+      "team": "red",
+      "actor": "New Bot 1",
+      "kind": "R1_CAUGHT",
+      "case": "r2_cross_session_replay",
+      "detail": "InvalidTag: ",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288905.9475455,
+      "ts_chicago": "Nov 9, 2026, 11:35:05 PM CST",
+      "type": "finding",
+      "team": "red",
+      "actor": "New Bot 1",
+      "kind": "R1_CAUGHT",
+      "case": "r3_near_miss_code",
+      "detail": "ValueError: fingerprint code mismatch: possible man-in-the-middle, hang up",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288905.9475455,
+      "ts_chicago": "Nov 9, 2026, 11:35:05 PM CST",
+      "type": "finding",
+      "team": "red",
+      "actor": "New Bot 1",
+      "kind": "R1_CAUGHT",
+      "case": "r4_retry_after_mismatch",
+      "detail": "MITM: Alice's confirm fails once. Can the SAME session be confirmed later \u2014 ValueError: session closed after a code mismatch: start a new handshake",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288905.9475455,
+      "ts_chicago": "Nov 9, 2026, 11:35:05 PM CST",
+      "type": "finding",
+      "team": "red",
+      "actor": "New Bot 1",
+      "kind": "R1_CAUGHT",
+      "case": "r5_truncated",
+      "detail": "ValueError: malformed: message too short",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288905.9475455,
+      "ts_chicago": "Nov 9, 2026, 11:35:05 PM CST",
+      "type": "finding",
+      "team": "red",
+      "actor": "New Bot 1",
+      "kind": "R1_CAUGHT",
+      "case": "r6_forged_future_seq",
+      "detail": "ValueError: replay or reorder: got seq 5, want 0",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288905.9475455,
+      "ts_chicago": "Nov 9, 2026, 11:35:05 PM CST",
+      "type": "finding",
+      "team": "red",
+      "actor": "New Bot 1",
+      "kind": "R1_CAUGHT",
+      "case": "r7_dos_then_real",
+      "detail": "A forged message must not knock the session out of sync. \u2014 real msg still opens after forgery",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288905.9475455,
+      "ts_chicago": "Nov 9, 2026, 11:35:05 PM CST",
+      "type": "finding",
+      "team": "red",
+      "actor": "New Bot 1",
+      "kind": "R1_CAUGHT",
+      "case": "r8_small_bb84",
+      "detail": "Finite-size: only 512 qubits, Eve on 25%. Does a key come out with no alert? \u2014 silent keys 0/10 at n=512",
+      "severity": "INFO",
+      "sha": ""
+    },
+    {
+      "ts": 1794288905.9475455,
+      "ts_chicago": "Nov 9, 2026, 11:35:05 PM CST",
+      "type": "finding",
+      "team": "red",
+      "actor": "New Bot 1",
+      "kind": "R1_MISSED",
+      "case": "r9_low_eve_under_warn",
+      "detail": "Eve on 8% of qubits: QBER ~2%, under the 2.5% warning line. \u2014 silent keys 6/10 (Eve 8%)",
+      "severity": "CRITICAL",
+      "sha": ""
+    },
+    {
+      "ts": 1794288835,
+      "ts_chicago": "Nov 9, 2026, 11:33:55 PM CST",
+      "type": "commit",
+      "team": "blue",
+      "actor": "Spherical Phase Lab",
+      "kind": "COMMIT",
+      "case": "",
+      "detail": "QKD cases N15 (Breidbart-basis Eve) and N16 (forged error report); B1 cross-check landed in b98f95f; low-rate Eve limit documented (Bloch Alignment Tester)",
+      "severity": "INFO",
+      "sha": "abe18416"
+    },
+    {
+      "ts": 1794288800.5849717,
+      "ts_chicago": "Nov 9, 2026, 11:33:20 PM CST",
+      "type": "alert",
+      "team": "blue",
+      "actor": "detector:hardened",
+      "kind": "QBER_WARN",
+      "case": "",
+      "detail": "bob: QBER=3.668% > warn 2.5%",
+      "severity": "MEDIUM",
+      "sha": ""
+    }
+  ],
+  "pulse": true,
+  "publisher_note": "initial publish"
+}

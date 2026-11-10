@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#05080f">
+<title>Prime Sphere Live</title>
+<style>
+:root{
+  --bg:#05080f; --card:#121624; --card2:#181d2e; --ink:#e8ecf7; --muted:#8b93ab;
+  --line:#22283a; --ok:#9be38f; --bad:#ff6b6b; --warn:#ffd166; --blue:#4dabf7;
+  --red:#ff6b6b; --gold:#ffd166; --new:#d7a1ff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.45 -apple-system,system-ui,Segoe UI,sans-serif;
+  min-height:100%;min-height:100dvh}
+body{padding:12px 14px calc(20px + env(safe-area-inset-bottom));}
+header{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+#sphere{width:72px;height:72px;border-radius:50%;background:#0a1020;flex:0 0 72px;
+  box-shadow:0 0 0 1px #243, 0 0 18px rgba(160,80,255,.25)}
+header.pulse #sphere{animation:pulse 1.1s ease-in-out infinite;box-shadow:0 0 0 1px #f46,0 0 28px rgba(255,80,120,.55)}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+h1{font-size:1.15rem;margin:0}
+.sub{color:var(--muted);font-size:.82rem;margin:2px 0 0}
+.totals{display:flex;flex-wrap:wrap;gap:8px;width:100%}
+.pill{background:var(--card);border:1px solid var(--line);border-radius:999px;
+  padding:6px 12px;font-size:.86rem;white-space:nowrap}
+.pill b{font-weight:650}
+.ok{color:var(--ok)} .bad{color:var(--bad)} .muted{color:var(--muted)}
+.issues{display:flex;flex-direction:column;gap:8px;margin:0 0 14px}
+.issue{background:var(--card);border-radius:10px;padding:10px 12px;border-left:3px solid var(--warn)}
+.issue.FIXED{border-left-color:var(--ok)}
+.issue .row{display:flex;gap:8px;align-items:center;justify-content:space-between}
+badge,.badge{font-size:.68rem;font-weight:700;letter-spacing:.04em;border-radius:999px;
+  padding:2px 7px;vertical-align:middle}
+.badge.OPEN{background:#3a2410;color:var(--warn)}
+.badge.FIXED{background:#14321a;color:var(--ok)}
+.badge.NEW{background:#2a1840;color:var(--new);margin-left:6px}
+main{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:840px){main{grid-template-columns:1fr 1fr 1fr}}
+section{background:var(--card);border-radius:12px;padding:12px;min-height:40vh;
+  max-height:70vh;overflow:auto;-webkit-overflow-scrolling:touch}
+h2{font-size:.92rem;margin:0 0 10px;letter-spacing:.02em}
+.red h2{color:var(--red)} .blue h2{color:var(--blue)} .board h2{color:var(--ok)}
+.ev{padding:8px;border-left:3px solid #445;margin:0 0 6px;background:var(--card2);border-radius:6px}
+.ev.CRITICAL{border-color:var(--bad)} .ev.HIGH{border-color:#ff9f43}
+.ev.MEDIUM{border-color:var(--warn)} .ev.INFO{border-color:var(--blue)}
+.t{color:var(--muted);font-size:.75rem} .k{font-weight:650}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th,td{padding:6px 5px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600}
+.alerts{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px}
+.alerts span{font-size:.68rem;background:#1c2438;border-radius:999px;padding:1px 6px;color:#c9d}
+footer{color:var(--muted);font-size:.75rem;margin-top:14px;line-height:1.4}
+</style>
+</head>
+<body>
+<header id="hdr">
+  <canvas id="sphere" width="144" height="144" aria-hidden="true"></canvas>
+  <div>
+    <h1>Prime Sphere Live</h1>
+    <p class="sub">Red / blue teaching range · results only · America/Chicago</p>
+  </div>
+  <div class="totals">
+    <div class="pill" id="hTot">Hardened …</div>
+    <div class="pill" id="vTot">Vuln …</div>
+    <div class="pill muted" id="when">Last update …</div>
+  </div>
+</header>
+<section class="issues" id="issues" aria-label="Open issues"></section>
+<main>
+  <section class="red"><h2>Red team</h2><div id="red"></div></section>
+  <section class="blue"><h2>Blue team alerts</h2><div id="blue"></div></section>
+  <section class="board"><h2>Scoreboard</h2><table id="board"></table>
+    <h2 style="margin-top:16px">Range events</h2><div id="range"></div>
+  </section>
+</main>
+<footer>
+  Classroom-grade teaching range for James Crout’s own Prime Sphere Lock.
+  Not audited — do not use it for real secrets. This page publishes results
+  only; the source repo stays private. Auto-refreshes every 15 seconds.
+</footer>
+<script>
+(function(){
+'use strict';
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+const chi=ts=>{
+  const d=new Date((typeof ts==='number' && ts<1e12?ts*1000:ts));
+  return d.toLocaleString('en-US',{timeZone:'America/Chicago',month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',second:'2-digit'})+' America/Chicago';
+};
+function evHtml(e){
+  return `<div class="ev ${esc(e.severity||'INFO')}">
+    <div class="t">${esc(e.ts_chicago||chi(e.ts))} · ${esc(e.actor||'')}${e.case?' · '+esc(e.case):''}${e.sha?' · '+esc(e.sha):''}</div>
+    <span class="k">${esc(e.kind)}</span> ${esc(e.detail||'')}
+  </div>`;
+}
+function render(s){
+  const t=s.totals||{};
+  const hok=t.hardened_caught===t.hardened_total;
+  const vok=false;
+  document.getElementById('hTot').innerHTML=`Hardened caught <b class="${hok?'ok':'bad'}">${t.hardened_caught}/${t.hardened_total}</b>`;
+  document.getElementById('vTot').innerHTML=`Vuln caught <b>${t.vuln_caught}/${t.vuln_total}</b>`;
+  document.getElementById('when').textContent='Last update '+ (s.updated_at_chicago||chi(s.updated_at_unix))+' (America/Chicago)';
+  document.getElementById('hdr').classList.toggle('pulse', !!s.pulse);
+  const issues=s.open_issues||[];
+  document.getElementById('issues').innerHTML=issues.map(i=>`
+    <div class="issue ${esc(i.status)}">
+      <div class="row"><strong>${esc(i.id)}</strong><span class="badge ${esc(i.status)}">${esc(i.status)}</span></div>
+      <div>${esc(i.title)}</div>
+      ${i.detail?`<div class="t">${esc(i.detail)}</div>`:''}
+    </div>`).join('') || '';
+  const evs=s.events||[];
+  const isBlue=e=>e.team==='blue' || e.type==='alert' || /^(SAS_|QBER_|REPLAY|REORDER|TAG_|MALFORMED|SESSION_|COMMIT_|BB84_|UNCONFIRMED|BAD_HEADER)/.test(e.kind||'');
+  const isRed=e=>e.team==='red' || e.type==='finding' || e.kind==='ATTACK';
+  document.getElementById('red').innerHTML=evs.filter(isRed).slice(0,80).map(evHtml).join('')||'<p class="muted">No red-team events yet.</p>';
+  document.getElementById('blue').innerHTML=evs.filter(isBlue).slice(0,80).map(evHtml).join('')||'<p class="muted">No alerts yet.</p>';
+  document.getElementById('range').innerHTML=evs.filter(e=>e.team==='range'||e.team==='lead'||e.type==='commit').slice(0,60).map(evHtml).join('');
+  const rows=s.cases||[];
+  document.getElementById('board').innerHTML='<thead><tr><th>Case</th><th>Hardened</th><th>Vuln</th></tr></thead><tbody>'+
+    rows.map(r=>{
+      const h=r.hardened||{}, v=r.vuln||{};
+      const alerts=(h.alerts||[]).map(a=>`<span>${esc(a)}</span>`).join('');
+      return `<tr>
+        <td>${esc(r.id)}${r.new?'<span class="badge NEW">NEW</span>':''}<div class="t">${esc(r.title||'')}${r.control?' · control':''}</div></td>
+        <td class="${h.caught?'ok':'bad'}">${h.caught?(r.control?'PASS':'caught'):(r.control?'FAIL':'MISSED')}${alerts?`<div class="alerts">${alerts}</div>`:''}</td>
+        <td class="${v.caught?'ok':'bad'}">${v.caught?(r.control?'PASS':'caught'):'fell'}</td>
+      </tr>`;
+    }).join('')+'</tbody>';
+  pulseFast = !!s.pulse;
+}
+async function tick(){
+  try{
+    const s=await (await fetch('status.json?ts='+Date.now(),{cache:'no-store'})).json();
+    render(s);
+  }catch(e){
+    document.getElementById('when').textContent='Waiting for status.json…';
+  }
+}
+tick(); setInterval(tick, 15000);
+
+/* Small animated prime-sphere header, same dark style as the prime-sphere app. */
+const cv=document.getElementById('sphere'), ctx=cv.getContext('2d');
+function isP(n){if(n<2)return false;if(n%2===0)return n===2;for(let d=3;d*d<=n;d+=2)if(n%d===0)return false;return true}
+const G=Math.PI*(3-Math.sqrt(5));
+function nrm(k){const y=1-((k*0.618034)%1)*2,r=Math.sqrt(Math.max(0,1-y*y)),f=k*G;return[Math.cos(f)*r,y,Math.sin(f)*r]}
+function bas(n){const a=Math.abs(n[0])<.9?[1,0,0]:[0,1,0];let u=[n[1]*a[2]-n[2]*a[1],n[2]*a[0]-n[0]*a[2],n[0]*a[1]-n[1]*a[0]];const L=Math.hypot(u[0],u[1],u[2])||1;u=[u[0]/L,u[1]/L,u[2]/L];return[u,[n[1]*u[2]-n[2]*u[1],n[2]*u[0]-n[0]*u[2],n[0]*u[1]-n[1]*u[0]]]}
+const shells=[];
+for(let k=0;k<8;k++){
+  const n=nrm(k),[u,v]=bas(n),r=.35+k*.1,pts=[];
+  for(let m=360*k;m<360*(k+1);m++) if(m>2&&isP(m)){
+    const t=(m%360)*Math.PI/180,c=Math.cos(t),s=Math.sin(t);
+    pts.push([r*(u[0]*c+v[0]*s),r*(u[1]*c+v[1]*s),r*(u[2]*c+v[2]*s)]);
+  }
+  shells.push({pts, hue: 300-250*k/7});
+}
+let yaw=.4,pitch=.35,t0=0,pulseFast=false;
+function frame(now){
+  requestAnimationFrame(frame);
+  const dt=t0?Math.min(64,now-t0):16; t0=now;
+  yaw += (pulseFast?0.0024:0.0009)*dt;
+  const {width:W,height:H}=cv;
+  ctx.fillStyle='#05080f'; ctx.fillRect(0,0,W,H);
+  const cy=Math.cos(yaw),sy=Math.sin(yaw),cp=Math.cos(pitch),sp=Math.sin(pitch);
+  const rot=p=>{
+    let x=p[0]*cy+p[2]*sy, z=-p[0]*sy+p[2]*cy, y=p[1];
+    const y2=y*cp-z*sp, z2=y*sp+z*cp; return [x,y2,z2];
+  };
+  const cx=W/2,cyy=H/2,sc=W*0.42;
+  const pts=[];
+  for(const sh of shells) for(const p of sh.pts){
+    const q=rot(p); pts.push({x:cx+q[0]*sc,y:cyy-q[1]*sc,z:q[2],hue:sh.hue});
+  }
+  pts.sort((a,b)=>a.z-b.z);
+  for(const p of pts){
+    const a=.35+(p.z+1)*.4, r=1.4+(p.z+1)*1.2;
+    ctx.beginPath(); ctx.arc(p.x,p.y,r,0,6.283);
+    ctx.fillStyle=`hsla(${p.hue},85%,${pulseFast?70:62}%,${a})`; ctx.fill();
+  }
+}
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
