@@ -1,6 +1,6 @@
 {
-  "updated_at_unix": 1794290193.2451522,
-  "updated_at_chicago": "Nov 9, 2026, 11:56:33 PM CST",
+  "updated_at_unix": 1794290321.156476,
+  "updated_at_chicago": "Nov 9, 2026, 11:58:41 PM CST",
   "timezone": "America/Chicago",
   "totals": {
     "hardened_caught": 16,
@@ -75,7 +75,7 @@
       },
       "vuln": {
         "caught": false,
-        "detail": "codes MATCHED after 114 tries (2-digit SAS)",
+        "detail": "codes MATCHED after 3 tries (2-digit SAS)",
         "expected": "falls"
       }
     },
@@ -444,8 +444,8 @@
   ],
   "events": [
     {
-      "ts": 1794290193.1262221,
-      "ts_chicago": "Nov 9, 2026, 11:56:33 PM CST",
+      "ts": 1794290321.0403736,
+      "ts_chicago": "Nov 9, 2026, 11:58:41 PM CST",
       "type": "run_end",
       "team": "range",
       "actor": "scoreboard",
@@ -460,8 +460,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290193.1254659,
-      "ts_chicago": "Nov 9, 2026, 11:56:33 PM CST",
+      "ts": 1794290321.0395875,
+      "ts_chicago": "Nov 9, 2026, 11:58:41 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -476,8 +476,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290193.0158687,
-      "ts_chicago": "Nov 9, 2026, 11:56:33 PM CST",
+      "ts": 1794290320.9325519,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -492,8 +492,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290193.004923,
-      "ts_chicago": "Nov 9, 2026, 11:56:33 PM CST",
+      "ts": 1794290320.9217532,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -508,8 +508,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.994251,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.91136,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -524,8 +524,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.9835236,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.90081,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -540,8 +540,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.9724967,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.8900666,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -556,8 +556,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.9614508,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.8793101,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -572,8 +572,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.9500191,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.8683362,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -588,8 +588,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.937493,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.8576484,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -604,8 +604,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.9263015,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.8466966,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -620,8 +620,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.915147,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.835699,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -636,8 +636,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.9039278,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.8247786,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -652,8 +652,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.9038157,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.8246868,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -668,8 +668,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290192.7861335,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.7082455,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -684,8 +684,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.7837794,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.7058864,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -700,8 +700,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.774371,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.6965208,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -716,8 +716,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.7721498,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.6942797,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -732,8 +732,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.7628126,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.6849763,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -748,8 +748,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.760249,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.6825356,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -764,8 +764,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.750852,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.6731434,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -780,8 +780,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.7487645,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.6709125,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -796,8 +796,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.7394292,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.6616206,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -812,8 +812,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.7372067,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.6593778,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -828,8 +828,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.7277741,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.6499395,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -844,8 +844,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.7183805,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.6407554,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -860,8 +860,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.7090032,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.6313848,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -876,8 +876,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.706645,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.6289465,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -892,8 +892,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.6971464,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.6196234,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -908,8 +908,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.6948617,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.6173608,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -924,8 +924,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.685331,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.607962,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -940,8 +940,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.6829464,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.605559,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -956,8 +956,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.6733572,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.5959835,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -972,8 +972,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.6732595,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.5958965,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -988,8 +988,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290192.4721391,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.3972619,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1004,8 +1004,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.4542077,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.3803928,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1020,8 +1020,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.4366333,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.3635712,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1036,8 +1036,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.4194016,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.346372,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1052,8 +1052,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.402142,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.329322,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1068,8 +1068,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.384927,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.312413,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1084,8 +1084,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.3677082,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.295432,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1100,8 +1100,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.3506145,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.2783358,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1116,8 +1116,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.333642,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.2612054,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1132,8 +1132,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.3163543,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.2443016,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1148,8 +1148,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.2990487,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.2269862,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -1164,8 +1164,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.2989464,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.2268908,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -1180,8 +1180,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290192.1495295,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.0776098,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1196,8 +1196,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.136457,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.0654523,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1212,8 +1212,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.133856,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.0629957,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1228,8 +1228,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.120069,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.0510135,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1244,8 +1244,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.1076505,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.0389314,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1260,8 +1260,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.095489,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.0269303,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1276,8 +1276,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.08324,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.015054,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1292,8 +1292,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.07075,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290320.0030444,
+      "ts_chicago": "Nov 9, 2026, 11:58:40 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1308,8 +1308,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.057989,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290319.9909332,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1324,8 +1324,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.0456166,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290319.97879,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1340,8 +1340,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.033111,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290319.9667122,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1356,8 +1356,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.0303385,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290319.9641314,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1372,8 +1372,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.0178552,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290319.9518685,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -1388,8 +1388,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290192.0177712,
-      "ts_chicago": "Nov 9, 2026, 11:56:32 PM CST",
+      "ts": 1794290319.9517863,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -1404,8 +1404,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290191.899341,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.8373284,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1420,8 +1420,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.8974674,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.835479,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1436,8 +1436,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.8858657,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.823927,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1452,8 +1452,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.874449,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.8126814,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1468,8 +1468,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.864455,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.8029833,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1484,8 +1484,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.862459,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.8008842,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1500,8 +1500,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.8504448,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7893472,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1516,8 +1516,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.8407192,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7796702,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1532,8 +1532,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.8387918,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7777433,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1548,8 +1548,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.827042,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7663965,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1564,8 +1564,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.815227,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7549114,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1580,8 +1580,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.803418,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7432585,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1596,8 +1596,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.791076,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.731534,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1612,8 +1612,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.7810025,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7217164,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -1628,8 +1628,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.7809844,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7216954,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -1644,8 +1644,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290191.7808437,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7215385,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1660,8 +1660,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.78069,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7213557,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -1676,8 +1676,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.7806733,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7213302,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -1692,8 +1692,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290191.7805347,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7211604,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1708,8 +1708,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.7803783,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7209651,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -1724,8 +1724,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.780359,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7209435,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -1740,8 +1740,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290191.7802174,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7207887,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1756,8 +1756,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.7800486,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.720621,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -1772,8 +1772,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.7800224,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7206025,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -1788,8 +1788,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290191.77988,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7204614,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1804,8 +1804,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.7797143,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.720299,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -1820,8 +1820,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.779692,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7202795,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -1836,8 +1836,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290191.779545,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.720136,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1852,8 +1852,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.7793736,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7199671,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -1868,8 +1868,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.7793512,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7199454,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -1884,8 +1884,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290191.7792037,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7197995,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1900,8 +1900,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.779034,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7196336,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -1916,8 +1916,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.7790017,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7196043,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -1932,8 +1932,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290191.7788224,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7194457,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -1948,8 +1948,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.7786117,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7192154,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -1964,8 +1964,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.7785358,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.7191246,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -1980,8 +1980,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290191.5420358,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.4844522,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -1996,8 +1996,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.5420153,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.4844334,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -2012,8 +2012,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290191.54201,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.484429,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -2028,8 +2028,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.541872,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.4843113,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -2044,8 +2044,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.54172,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.4842124,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -2060,8 +2060,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290191.5340416,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290319.4838116,
+      "ts_chicago": "Nov 9, 2026, 11:58:39 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -2076,8 +2076,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.018249,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290318.977733,
+      "ts_chicago": "Nov 9, 2026, 11:58:38 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -2092,8 +2092,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.0182157,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290318.9776993,
+      "ts_chicago": "Nov 9, 2026, 11:58:38 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -2108,8 +2108,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290191.0179384,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290318.977422,
+      "ts_chicago": "Nov 9, 2026, 11:58:38 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -2124,8 +2124,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.0179317,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290318.977415,
+      "ts_chicago": "Nov 9, 2026, 11:58:38 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "",
@@ -2140,8 +2140,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.017586,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290318.9770691,
+      "ts_chicago": "Nov 9, 2026, 11:58:38 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -2156,8 +2156,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290191.0175202,
-      "ts_chicago": "Nov 9, 2026, 11:56:31 PM CST",
+      "ts": 1794290318.9770057,
+      "ts_chicago": "Nov 9, 2026, 11:58:38 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -2172,8 +2172,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290190.9968503,
-      "ts_chicago": "Nov 9, 2026, 11:56:30 PM CST",
+      "ts": 1794290318.9568632,
+      "ts_chicago": "Nov 9, 2026, 11:58:38 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -2188,8 +2188,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290190.9967797,
-      "ts_chicago": "Nov 9, 2026, 11:56:30 PM CST",
+      "ts": 1794290318.956793,
+      "ts_chicago": "Nov 9, 2026, 11:58:38 PM CST",
       "type": "result",
       "team": "range",
       "actor": "scoreboard",
@@ -2204,8 +2204,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290190.993485,
-      "ts_chicago": "Nov 9, 2026, 11:56:30 PM CST",
+      "ts": 1794290318.9533386,
+      "ts_chicago": "Nov 9, 2026, 11:58:38 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "cases",
@@ -2220,8 +2220,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290190.9934154,
-      "ts_chicago": "Nov 9, 2026, 11:56:30 PM CST",
+      "ts": 1794290318.9532688,
+      "ts_chicago": "Nov 9, 2026, 11:58:38 PM CST",
       "type": "run_start",
       "team": "range",
       "actor": "scoreboard",
@@ -2236,8 +2236,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290173.1426947,
-      "ts_chicago": "Nov 9, 2026, 11:56:13 PM CST",
+      "ts": 1794290293.8048568,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "result",
       "team": "red",
       "actor": "New Bot 1",
@@ -2252,8 +2252,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290173.1389525,
-      "ts_chicago": "Nov 9, 2026, 11:56:13 PM CST",
+      "ts": 1794290293.799139,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "finding",
       "team": "red",
       "actor": "New Bot 1",
@@ -2268,8 +2268,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290173.1389525,
-      "ts_chicago": "Nov 9, 2026, 11:56:13 PM CST",
+      "ts": 1794290293.799139,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "finding",
       "team": "red",
       "actor": "New Bot 1",
@@ -2284,8 +2284,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290173.1389525,
-      "ts_chicago": "Nov 9, 2026, 11:56:13 PM CST",
+      "ts": 1794290293.799139,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "finding",
       "team": "red",
       "actor": "New Bot 1",
@@ -2300,8 +2300,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290173.1389525,
-      "ts_chicago": "Nov 9, 2026, 11:56:13 PM CST",
+      "ts": 1794290293.799139,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "finding",
       "team": "red",
       "actor": "New Bot 1",
@@ -2316,8 +2316,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290173.1389525,
-      "ts_chicago": "Nov 9, 2026, 11:56:13 PM CST",
+      "ts": 1794290293.799139,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "finding",
       "team": "red",
       "actor": "New Bot 1",
@@ -2332,8 +2332,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290173.1389525,
-      "ts_chicago": "Nov 9, 2026, 11:56:13 PM CST",
+      "ts": 1794290293.799139,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "finding",
       "team": "red",
       "actor": "New Bot 1",
@@ -2348,8 +2348,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290173.1389525,
-      "ts_chicago": "Nov 9, 2026, 11:56:13 PM CST",
+      "ts": 1794290293.799139,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "finding",
       "team": "red",
       "actor": "New Bot 1",
@@ -2364,8 +2364,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290173.1389525,
-      "ts_chicago": "Nov 9, 2026, 11:56:13 PM CST",
+      "ts": 1794290293.799139,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "finding",
       "team": "red",
       "actor": "New Bot 1",
@@ -2380,8 +2380,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290173.1389525,
-      "ts_chicago": "Nov 9, 2026, 11:56:13 PM CST",
+      "ts": 1794290293.799139,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "finding",
       "team": "red",
       "actor": "New Bot 1",
@@ -2396,8 +2396,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290173.0317147,
-      "ts_chicago": "Nov 9, 2026, 11:56:13 PM CST",
+      "ts": 1794290293.669391,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2412,8 +2412,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290173.011025,
-      "ts_chicago": "Nov 9, 2026, 11:56:13 PM CST",
+      "ts": 1794290293.649862,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2428,8 +2428,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.990531,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.6286411,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2444,8 +2444,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9602554,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5999787,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2460,8 +2460,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9414706,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5816138,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "New Bot 1",
@@ -2476,8 +2476,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9414053,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5815592,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "result",
       "team": "red",
       "actor": "New Bot 1",
@@ -2492,8 +2492,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290172.9250607,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5649047,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2508,8 +2508,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9246867,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5645003,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2524,8 +2524,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9232833,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5631812,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2540,8 +2540,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9229147,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.562853,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2556,8 +2556,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.921414,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5614564,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2572,8 +2572,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9210308,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5610657,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2588,8 +2588,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9196076,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.559594,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2604,8 +2604,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9192245,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5592072,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2620,8 +2620,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.917866,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.557683,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2636,8 +2636,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9175224,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5573435,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2652,8 +2652,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9161153,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5559106,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2668,8 +2668,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.915796,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5555947,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2684,8 +2684,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9144373,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5542061,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2700,8 +2700,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9141123,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5538695,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2716,8 +2716,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.912749,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5523472,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2732,8 +2732,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9124103,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5519528,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2748,8 +2748,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9109428,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5504153,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2764,8 +2764,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9106104,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5500698,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2780,8 +2780,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.90926,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5486336,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2796,8 +2796,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9088256,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.548169,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2812,8 +2812,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9071968,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.546348,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "New Bot 1",
@@ -2828,8 +2828,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9071765,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.546331,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "result",
       "team": "red",
       "actor": "New Bot 1",
@@ -2844,8 +2844,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290172.9069695,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.546164,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2860,8 +2860,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.906756,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.545998,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "New Bot 1",
@@ -2876,8 +2876,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9067378,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5459785,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "result",
       "team": "red",
       "actor": "New Bot 1",
@@ -2892,8 +2892,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290172.906575,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.545813,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2908,8 +2908,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9064112,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5456295,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "New Bot 1",
@@ -2924,8 +2924,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9063945,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5456085,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "result",
       "team": "red",
       "actor": "New Bot 1",
@@ -2940,8 +2940,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290172.906231,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5454195,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -2956,8 +2956,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.906069,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.545238,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "New Bot 1",
@@ -2972,8 +2972,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9060442,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5452178,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "result",
       "team": "red",
       "actor": "New Bot 1",
@@ -2988,8 +2988,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290172.905741,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5448992,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3004,8 +3004,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9057176,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5448756,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3020,8 +3020,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.905425,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5445764,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "New Bot 1",
@@ -3036,8 +3036,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.905406,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5445573,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "result",
       "team": "red",
       "actor": "New Bot 1",
@@ -3052,8 +3052,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290172.9052484,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5443916,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3068,8 +3068,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9050894,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5442078,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "New Bot 1",
@@ -3084,8 +3084,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9050689,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5441856,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "result",
       "team": "red",
       "actor": "New Bot 1",
@@ -3100,8 +3100,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290172.9047754,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.543888,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3116,8 +3116,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9044735,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.543578,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "New Bot 1",
@@ -3132,8 +3132,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9044435,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5435398,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "result",
       "team": "red",
       "actor": "New Bot 1",
@@ -3148,8 +3148,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290172.9042368,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5432901,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3164,8 +3164,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290172.9036624,
-      "ts_chicago": "Nov 9, 2026, 11:56:12 PM CST",
+      "ts": 1794290293.5425353,
+      "ts_chicago": "Nov 9, 2026, 11:58:13 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "New Bot 1",
@@ -3180,8 +3180,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.9031746,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.542051,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "result",
       "team": "red",
       "actor": "New Bot 1",
@@ -3196,8 +3196,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290112.7907023,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.3714013,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3212,8 +3212,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.7700324,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.3345394,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3228,8 +3228,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.7489386,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.2975268,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3244,8 +3244,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.7171156,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.2408965,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3260,8 +3260,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.6974528,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.203302,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "New Bot 1",
@@ -3276,8 +3276,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.697369,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.2032127,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "result",
       "team": "red",
       "actor": "New Bot 1",
@@ -3292,8 +3292,8 @@
       "target": "hardened + vuln"
     },
     {
-      "ts": 1794290112.6785378,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.1821406,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3308,8 +3308,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.678117,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.1814091,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3324,8 +3324,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.6767905,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.1787605,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3340,8 +3340,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.6764646,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.178122,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3356,8 +3356,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.6750014,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.1754053,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3372,8 +3372,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.6746852,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.174817,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3388,8 +3388,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.673373,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.172298,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3404,8 +3404,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.673013,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.1715608,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3420,8 +3420,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.6715655,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.168947,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3436,8 +3436,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.67113,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.168281,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3452,8 +3452,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.669637,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.165617,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3468,8 +3468,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.6693113,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.1650035,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3484,8 +3484,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.6679344,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.162427,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3500,8 +3500,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.6675732,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.1617377,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3516,8 +3516,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.6659963,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.1589422,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3532,8 +3532,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.6656466,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.1583254,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3548,8 +3548,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.6643453,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.155826,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3564,8 +3564,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.663991,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.1550162,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3580,8 +3580,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.6625776,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.1523433,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3596,8 +3596,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.6621184,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.1514852,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "alert",
       "team": "blue",
       "actor": "detector:hardened",
@@ -3612,8 +3612,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.66023,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.1484513,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "attack",
       "team": "red",
       "actor": "New Bot 1",
@@ -3628,8 +3628,8 @@
       "target": "hardened"
     },
     {
-      "ts": 1794290112.6602116,
-      "ts_chicago": "Nov 9, 2026, 11:55:12 PM CST",
+      "ts": 1794290233.1484177,
+      "ts_chicago": "Nov 9, 2026, 11:57:13 PM CST",
       "type": "result",
       "team": "red",
       "actor": "New Bot 1",
