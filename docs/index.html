@@ -40,6 +40,17 @@ badge,.badge{font-size:.68rem;font-weight:700;letter-spacing:.04em;border-radius
 .badge.OPEN{background:#3a2410;color:var(--warn)}
 .badge.FIXED{background:#14321a;color:var(--ok)}
 .badge.NEW{background:#2a1840;color:var(--new);margin-left:6px}
+.badge.BY, .badge.BY_DESIGN, .badge[class*='BY']{background:#1c2a40;color:#9ad}
+.issue.BY, .issue.BY_DESIGN, .issue[class*='BY']{border-left-color:#4dabf7}
+.using{display:grid;grid-template-columns:1fr;gap:8px;margin:0 0 14px}
+@media(min-width:640px){.using{grid-template-columns:1fr 1fr}}
+.using .card{background:var(--card);border-radius:10px;padding:10px 12px}
+.using h2{margin-bottom:6px}
+.using li{margin:0 0 4px;font-size:.86rem}
+.res{font-size:.68rem;font-weight:700;border-radius:999px;padding:1px 6px;margin-left:6px}
+.res.CAUGHT{background:#14321a;color:var(--ok)}
+.res.MISSED,.res.ERROR,.res.CRASH{background:#3a1518;color:var(--bad)}
+.line{color:var(--muted);font-size:.8rem;margin-top:2px}
 main{display:grid;grid-template-columns:1fr;gap:12px}
 @media(min-width:840px){main{grid-template-columns:1fr 1fr 1fr}}
 section{background:var(--card);border-radius:12px;padding:12px;min-height:40vh;
@@ -71,7 +82,8 @@ footer{color:var(--muted);font-size:.75rem;margin-top:14px;line-height:1.4}
     <div class="pill muted" id="when">Last update …</div>
   </div>
 </header>
-<section class="issues" id="issues" aria-label="Open issues"></section>
+<section class="issues" id="issues" aria-label="Open and fixed issues"></section>
+<section class="using" id="using" aria-label="What each side is using"></section>
 <main>
   <section class="red"><h2>Red team</h2><div id="red"></div></section>
   <section class="blue"><h2>Blue team alerts</h2><div id="blue"></div></section>
@@ -93,9 +105,14 @@ const chi=ts=>{
   return d.toLocaleString('en-US',{timeZone:'America/Chicago',month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',second:'2-digit'})+' America/Chicago';
 };
 function evHtml(e){
+  const res=e.result?`<span class="res ${esc(e.result)}">${esc(e.result)}</span>`:'';
+  const using=e.technique?`<div class="line">using: ${esc(e.technique)}</div>`:'';
+  const defn=e.defense?`<div class="line">defended by: ${esc(e.defense)}</div>`:'';
+  const tgt=e.target?` · target ${esc(e.target)}`:'';
   return `<div class="ev ${esc(e.severity||'INFO')}">
-    <div class="t">${esc(e.ts_chicago||chi(e.ts))} · ${esc(e.actor||'')}${e.case?' · '+esc(e.case):''}${e.sha?' · '+esc(e.sha):''}</div>
-    <span class="k">${esc(e.kind)}</span> ${esc(e.detail||'')}
+    <div class="t">${esc(e.ts_chicago||chi(e.ts))} · ${esc(e.actor||'')}${e.case?' · '+esc(e.case):''}${tgt}${e.sha?' · '+esc(e.sha):''}</div>
+    <span class="k">${esc(e.kind)}</span> ${esc(e.detail||'')} ${res}
+    ${using}${defn}
   </div>`;
 }
 function render(s){
@@ -107,12 +124,20 @@ function render(s){
   document.getElementById('when').textContent='Last update '+ (s.updated_at_chicago||chi(s.updated_at_unix))+' (America/Chicago)';
   document.getElementById('hdr').classList.toggle('pulse', !!s.pulse);
   const issues=s.open_issues||[];
-  document.getElementById('issues').innerHTML=issues.map(i=>`
-    <div class="issue ${esc(i.status)}">
-      <div class="row"><strong>${esc(i.id)}</strong><span class="badge ${esc(i.status)}">${esc(i.status)}</span></div>
+  document.getElementById('issues').innerHTML=issues.map(i=>{
+    const st=esc(i.status||'');
+    const klass=st.replace(/\s+/g,'_');
+    return `<div class="issue ${klass}">
+      <div class="row"><strong>${esc(i.id)}</strong><span class="badge ${klass}">${st}</span></div>
       <div>${esc(i.title)}</div>
       ${i.detail?`<div class="t">${esc(i.detail)}</div>`:''}
-    </div>`).join('') || '';
+    </div>`;
+  }).join('') || '';
+  const use=s.using||{red:[],blue:[]};
+  const lis=arr=>(arr||[]).map(x=>`<li>${esc(x)}</li>`).join('')||'<li class="muted">Waiting for the next round…</li>';
+  document.getElementById('using').innerHTML=`
+    <div class="card red"><h2>Red is using</h2><ul>${lis(use.red)}</ul></div>
+    <div class="card blue"><h2>Blue is defending with</h2><ul>${lis(use.blue)}</ul></div>`;
   const evs=s.events||[];
   const isBlue=e=>e.team==='blue' || e.type==='alert' || /^(SAS_|QBER_|REPLAY|REORDER|TAG_|MALFORMED|SESSION_|COMMIT_|BB84_|UNCONFIRMED|BAD_HEADER)/.test(e.kind||'');
   const isRed=e=>e.team==='red' || e.type==='finding' || e.kind==='ATTACK';
